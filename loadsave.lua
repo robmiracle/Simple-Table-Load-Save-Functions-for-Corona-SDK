@@ -1,6 +1,8 @@
+M = {}
+
 local json = require("json")
  
-function saveTable(t, filename)
+function M.saveTable(t, filename)
     local path = system.pathForFile( filename, system.DocumentsDirectory)
     local file = io.open(path, "w")
     if file then
@@ -13,7 +15,7 @@ function saveTable(t, filename)
     end
 end
  
-function loadTable(filename)
+function M.loadTable(filename)
     local path = system.pathForFile( filename, system.DocumentsDirectory)
     local contents = ""
     local myTable = {}
@@ -28,3 +30,4 @@ function loadTable(filename)
     return nil
 end
 
+return M

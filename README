@@ -2,15 +2,17 @@ Simple to use Table Save and Table Load functions for Lua and Corona SDK
 
 USAGE:
 
+local loadsave = require("loadsave)
+
 myTable = {}
 myTable.musicOn = false
 myTable.soundOn = true
 
-saveTable(myTable, "myTable.json")
+loadsave.saveTable(myTable, "myTable.json")
 
 Then to read it back in:
 
-myTable = loadTable("myTable.json")
+myTable = loadssave.loadTable("myTable.json")
 
 This basic code, uses system.DocumentsDirectory to save game settings.  If you need to save
 files to other locations, you will need to modify the code to use a different directory like
