@@ -2,6 +2,7 @@ M = {}
 
 local json = require("json")
 local DefaultLocation = "DocumentsDirectory"
+local RealDefaultLocation = DefaultLocation
 local ValidLocations = {
    ["DocumentsDirectory"] = true,
    ["CachesDirectory"] = true,
@@ -29,7 +30,7 @@ end
  
 function M.loadTable(filename, location)
     if location and (not ValidLocations[location]) then
-     error("Tried to save a table to an invalid location", 2)
+     error("Tried to load a table from an invalid location", 2)
     elseif not location then
       location = DefaultLocation
     end
@@ -45,6 +46,16 @@ function M.loadTable(filename, location)
         return myTable
     end
     return nil
+end
+
+function M.changeDefault(location)
+	if location and (not ValidLocations[location]) then
+     error("Tried to change the default location to an invalid location", 2)
+    elseif not location then
+      location = RealDefaultLocation
+    end
+    DefaultLocation = location
+    return true
 end
 
 return M
