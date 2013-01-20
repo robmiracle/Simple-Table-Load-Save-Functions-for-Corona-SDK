@@ -1,11 +1,11 @@
 local _ = {}
 local json = require("json")
-local DefaultLocation = "DocumentsDirectory"
+local DefaultLocation = system.DocumentsDirectory
 local RealDefaultLocation = DefaultLocation
 local ValidLocations = {
-   ["DocumentsDirectory"] = true,
-   ["CachesDirectory"] = true,
-   ["TemporaryDirectory"] = true
+   [system.DocumentsDirectory] = true,
+   [system.CachesDirectory] = true,
+   [system.TemporaryDirectory] = true
 }
 
 function _.saveTable(t, filename, location)
@@ -15,7 +15,7 @@ function _.saveTable(t, filename, location)
       location = DefaultLocation
     end
     
-    local path = system.pathForFile( filename, system[location])
+    local path = system.pathForFile( filename, location)
     local file = io.open(path, "w")
     if file then
         local contents = json.encode(t)
@@ -33,7 +33,7 @@ function _.loadTable(filename, location)
     elseif not location then
       location = DefaultLocation
     end
-    local path = system.pathForFile( filename, system[location])
+    local path = system.pathForFile( filename, location)
     local contents = ""
     local myTable = {}
     local file = io.open( path, "r" )
@@ -48,7 +48,7 @@ function _.loadTable(filename, location)
 end
 
 function _.changeDefault(location)
-	if location and (not ValidLocations[location]) then
+	if location and (not location) then
 		error("Attempted to change the default location to an invalid location", 2)
 	elseif not location then
 		location = RealDefaultLocation

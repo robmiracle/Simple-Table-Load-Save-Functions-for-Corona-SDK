@@ -17,9 +17,9 @@ files to other locations, you can pass another argument "CachesDirectory" or "Te
 apply the change to the specified location.
 
 For example:
-	loadsave.saveTable(myTable, "myTable.json", "TemporaryDirectory")
-	loadsave.loadTable("myTable.json", "TemporaryDirectory")
+	loadsave.saveTable(myTable, "myTable.json", system.TemporaryDirectory)
+	loadsave.loadTable("myTable.json", system.TemporaryDirectory)
 
 If you'd like to change the default directory, then you can change the variable in the code
-(`DefaultLocation = "TemporaryDirectory"`) or call `loadsave.changeDefault("TemporaryDirectory")` within your code.
+(`DefaultLocation = system.TemporaryDirectory`) or call `loadsave.changeDefault(system.TemporaryDirectory)` within your code.
 
