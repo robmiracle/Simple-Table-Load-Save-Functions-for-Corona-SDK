@@ -34,16 +34,12 @@ function M.loadTable(filename, location)
       location = _defaultLocation
     end
     local path = system.pathForFile( filename, location)
-    local contents = ""
-    local myTable = {}
-    local file = io.open( path, "r" )
-    if file then
-        -- read all contents of file into a string
-        local contents = file:read( "*a" )
-        myTable = json.decode(contents);
-        io.close( file )
-        return myTable
+    local decoded = json.decodeFile( path )
+     
+    if decoded then  
+        return decoded
     end
+  
     return nil
 end
 
